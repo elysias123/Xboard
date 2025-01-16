@@ -42,27 +42,19 @@ class Surge implements ProtocolInterface
                     'chacha20-ietf-poly1305'
                 ])
             ) {
-                // [Proxy]
                 $proxies .= self::buildShadowsocks($item['password'], $item);
-                // [Proxy Group]
                 $proxyGroup .= $item['name'] . ', ';
             }
             if ($item['type'] === 'vmess') {
-                // [Proxy]
                 $proxies .= self::buildVmess($user['uuid'], $item);
-                // [Proxy Group]
                 $proxyGroup .= $item['name'] . ', ';
             }
             if ($item['type'] === 'trojan') {
-                // [Proxy]
                 $proxies .= self::buildTrojan($user['uuid'], $item);
-                // [Proxy Group]
                 $proxyGroup .= $item['name'] . ', ';
             }
             if ($item['type'] === 'hysteria') {
-                // [Proxy]
                 $proxies .= self::buildHysteria($user['uuid'], $item);
-                // [Proxy Group]
                 $proxyGroup .= $item['name'] . ', ';
             }
         }

@@ -59,10 +59,15 @@ class Stash implements ProtocolInterface
                 array_push($proxy, self::buildVmess($user['uuid'], $item));
                 array_push($proxies, $item['name']);
             }
-            // if ($item['type'] === 'vless') {
-            //     array_push($proxy, self::buildVless($user['uuid'], $item));
-            //     array_push($proxies, $item['name']);
-            // }
+            if (
+                $item['type'] === 'vless'
+                && in_array(data_get($item['protocol_settings'], 'network'), ['tcp', 'ws', 'grpc', 'http', 'h2'])
+                && in_array(data_get($item['protocol_settings'], 'tls'), [1, 0])
+                && in_array(data_get($item['protocol_settings'], 'flow'), ['xtls-rprx-origin', 'xtls-rprx-direct', 'xtls-rprx-splice'])
+            ) {
+                array_push($proxy, self::buildVless($user['uuid'], $item));
+                array_push($proxies, $item['name']);
+            }
             if ($item['type'] === 'hysteria') {
                 array_push($proxy, self::buildHysteria($user['uuid'], $item));
                 array_push($proxies, $item['name']);
@@ -192,15 +197,6 @@ class Stash implements ProtocolInterface
                     $array['servername'] = $serverName;
                 }
                 break;
-            case 2:
-                $array['tls'] = true;
-                $array['skip-cert-verify'] = data_get($protocol_settings, 'reality_settings.allow_insecure');
-                $array['servername'] = data_get($protocol_settings, 'reality_settings.server_name');
-                $array['reality-opts'] = [
-                    'public-key' => data_get($protocol_settings, 'reality_settings.public_key'),
-                    'short-id' => data_get($protocol_settings, 'reality_settings.short_id')
-                ];
-                break;
         }
 
         switch (data_get($protocol_settings, 'network')) {
@@ -219,6 +215,11 @@ class Stash implements ProtocolInterface
                 $array['network'] = 'grpc';
                 $array['grpc-opts']['grpc-service-name'] = data_get($protocol_settings, 'network_settings.serviceName');
                 break;
+            // case 'h2':
+            //     $array['network'] = 'h2';
+            //     $array['h2-opts']['host'] = data_get($protocol_settings, 'network_settings.host');
+            //     $array['h2-opts']['path'] = data_get($protocol_settings, 'network_settings.path');
+            //     break;
         }
 
         return $array;

@@ -51,6 +51,7 @@ class SingBox implements ProtocolInterface
         $outbounds = $this->config['outbounds'];
         $proxies = [];
         foreach ($this->servers as $item) {
+            $protocol_settings = $item['protocol_settings'];
             if ($item['type'] === 'shadowsocks') {
                 $ssConfig = $this->buildShadowsocks($item['password'], $item);
                 $proxies[] = $ssConfig;
@@ -63,7 +64,9 @@ class SingBox implements ProtocolInterface
                 $vmessConfig = $this->buildVmess($this->user['uuid'], $item);
                 $proxies[] = $vmessConfig;
             }
-            if ($item['type'] === 'vless') {
+            if ($item['type'] === 'vless' 
+                &&  in_array(data_get($protocol_settings, 'network'), ['tcp', 'ws', 'grpc', 'http', 'quic', 'httpupgrade'])
+            ) {
                 $vlessConfig = $this->buildVless($this->user['uuid'], $item);
                 $proxies[] = $vlessConfig;
             }
@@ -213,13 +216,13 @@ class SingBox implements ProtocolInterface
             ],
             'h2' => [
                 'type' => 'http',
-                'host' => data_get($protocol_settings, 'network_settings.host') ? [data_get($protocol_settings, 'network_settings.host')] : null,
+                'host' => data_get($protocol_settings, 'network_settings.host'),
                 'path' => data_get($protocol_settings, 'network_settings.path')
             ],
             'httpupgrade' => [
                 'type' => 'httpupgrade',
                 'path' => data_get($protocol_settings, 'network_settings.path'),
-                'host' => data_get($protocol_settings, 'network_settings.headers.Host', $server['host']),
+                'host' => data_get($protocol_settings, 'network_settings.host', $server['host']),
                 'headers' => data_get($protocol_settings, 'network_settings.headers')
             ],
             default => null

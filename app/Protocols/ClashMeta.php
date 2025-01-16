@@ -43,6 +43,7 @@ class ClashMeta implements ProtocolInterface
         $proxies = [];
 
         foreach ($servers as $item) {
+            $protocol_settings = $item['protocol_settings'];
             if ($item['type'] === 'shadowsocks') {
                 array_push($proxy, self::buildShadowsocks($item['password'], $item));
                 array_push($proxies, $item['name']);
@@ -55,7 +56,10 @@ class ClashMeta implements ProtocolInterface
                 array_push($proxy, self::buildTrojan($user['uuid'], $item));
                 array_push($proxies, $item['name']);
             }
-            if ($item['type'] === 'vless') {
+            if (
+                $item['type'] === 'vless'
+                && in_array(data_get($protocol_settings, 'network'), ['tcp', 'ws', 'grpc', 'http', 'h2'])
+            ) {
                 array_push($proxy, self::buildVless($user['uuid'], $item));
                 array_push($proxies, $item['name']);
             }
