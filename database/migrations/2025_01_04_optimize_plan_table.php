@@ -38,6 +38,7 @@ return new class extends Migration {
                     ->where('id', $plan->id)
                     ->update([
                         'prices' => json_encode($prices),
+                        'sell' => $plan->show
                     ]);
             }
         });
