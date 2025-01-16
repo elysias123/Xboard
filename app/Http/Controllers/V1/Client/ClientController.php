@@ -120,18 +120,15 @@ class ClientController extends Controller
         if ($this->isBrowserAccess($request)) {
             return $this->handleBrowserSubscribe($user, $userService);
         }
-
-        $types = $this->getFilteredTypes($request->input('types', 'all'));
-        $filterArr = $this->getFilterArray($request->input('filter'));
         $clientInfo = $this->getClientInfo($request);
-
+        $types = $this->getFilteredTypes($request->input('types'), $clientInfo['supportHy2']);
+        $filterArr = $this->getFilterArray($request->input('filter'));
         // Get available servers and apply filters
         $servers = ServerService::getAvailableServers($user);
         $serversFiltered = $this->filterServers(
             servers: $servers,
             types: $types,
             filters: $filterArr,
-            supportHy2: $clientInfo['supportHy2']
         );
 
         $this->setSubscribeInfoToServers($serversFiltered, $user, count($servers) - count($serversFiltered));
@@ -154,14 +151,21 @@ class ClientController extends Controller
         return (new General($user, $serversFiltered))->handle();
     }
 
-    private function getFilteredTypes(string $types): array
+    private function getFilteredTypes(string|null $types, bool $supportHy2): array
     {
-        return $types === 'all'
+        if ($types === 'all') {
+            return self::ALLOWED_TYPES;
+        }
+
+        $allowedTypes = $supportHy2
             ? self::ALLOWED_TYPES
-            : array_values(array_intersect(
-                explode('|', str_replace(['|', '｜', ','], '|', $types)),
-                self::ALLOWED_TYPES
-            ));
+            : array_diff(self::ALLOWED_TYPES, ['hysteria2']);
+        if (!$types) {
+            return array_values($allowedTypes);
+        }
+
+        $userTypes = explode('|', str_replace(['|', '｜', ','], '|', $types));
+        return array_values(array_intersect($userTypes, $allowedTypes));
     }
 
     private function getFilterArray(?string $filter): ?array
@@ -199,12 +203,16 @@ class ClientController extends Controller
         return $result || !count(self::CLIENT_VERSIONS);
     }
 
-    private function filterServers(array $servers, array $types, ?array $filters, bool $supportHy2): array
+    private function filterServers(array $servers, array $types, ?array $filters): array
     {
-        return collect($servers)->reject(function ($server) use ($types, $filters, $supportHy2) {
+        return collect($servers)->reject(function ($server) use ($types, $filters) {
             // Check Hysteria2 compatibility
             if ($server['type'] === 'hysteria' && optional($server['protocol_settings'])['version'] === 2) {
-                if (!in_array('hysteria2', $types) || !$supportHy2) {
+                if (!in_array('hysteria2', $types)) {
+                    return true;
+                }
+            } else {
+                if (!in_array($server['type'], $types)) {
                     return true;
                 }
             }
