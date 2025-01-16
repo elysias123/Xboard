@@ -114,6 +114,7 @@ docker compose up -d
 ```
 > - 如果您是较早安装的旧版本，需要将命令中的 `web` 改为 `xboard`，即：
 ```bash
+git fetch --all && git reset --hard origin/master && git pull origin master
 docker compose pull && \
 docker compose run -it --rm xboard php artisan xboard:update && \
 docker compose up -d
