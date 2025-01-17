@@ -56,6 +56,10 @@ docker compose up -d
 - [从 v2board 1.7.3 迁移](./docs/zh-CN/migration/v2board-1.7.3.md)
 - [从 v2board wyx2685 迁移](./docs/zh-CN/migration/v2board-wyx2685.md)
 
+## 📈 Star 增长趋势
+
+[![Stargazers over time](https://starchart.cc/cedar2025/Xboard.svg)](https://starchart.cc/cedar2025/Xboard)
+
 ## 🛠️ 技术栈
 
 - 后端：Laravel 11 + Octane

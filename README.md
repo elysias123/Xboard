@@ -39,7 +39,7 @@ docker compose up -d
 > After installation, visit: http://SERVER_IP:7001  
 > ⚠️ Make sure to save the admin credentials shown during installation
 
-## �� Documentation
+## 📖 Documentation
 
 ### 🔄 Upgrade Notice
 > 🚨 **Important:** This version involves significant changes. Please strictly follow the upgrade documentation and backup your database before upgrading. Note that upgrading and migration are different processes, do not confuse them.
@@ -55,6 +55,10 @@ docker compose up -d
 - [Migrate from v2board 1.7.4](./docs/zh-CN/migration/v2board-1.7.4.md)
 - [Migrate from v2board 1.7.3](./docs/zh-CN/migration/v2board-1.7.3.md)
 - [Migrate from v2board wyx2685](./docs/zh-CN/migration/v2board-wyx2685.md)
+
+## 📈 Star History
+
+[![Stargazers over time](https://starchart.cc/cedar2025/Xboard.svg)](https://starchart.cc/cedar2025/Xboard)
 
 ## 🛠️ Tech Stack
 
