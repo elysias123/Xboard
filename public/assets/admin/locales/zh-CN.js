@@ -565,7 +565,8 @@ window.XBOARD_TRANSLATIONS['zh-CN'] = {
         "title": "设置Webhook",
         "description": "设置机器人的webhook，不设置将无法收到Telegram通知。",
         "button": "一键设置",
-        "setting": "设置中..."
+        "setting": "设置中...",
+        "success": "Webhook 设置成功"
       },
       "bot_enable": {
         "title": "启用机器人通知",

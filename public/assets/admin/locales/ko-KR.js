@@ -413,9 +413,293 @@ window.XBOARD_TRANSLATIONS['ko-KR'] = {
         "description": "활성화하면 사용자가 구독을 변경할 때 시스템이 기존 구독에서 공제합니다. 자세한 내용은 문서를 참조하세요."
       },
       "new_order_event": {
-        "title": "새 주문 이벤트",
-        "description": "새 주문이 생성될 때 실행할 작업을 선택합니다."
+        "title": "새 구독 시 트리거 이벤트",
+        "description": "새 구독이 완료되면 이 작업이 트리거됩니다.",
+        "options": {
+          "no_action": "작업 없음",
+          "reset_traffic": "사용자 트래픽 초기화"
+        }
+      },
+      "renew_order_event": {
+        "title": "구독 갱신 시 트리거 이벤트",
+        "description": "구독 갱신이 완료되면 이 작업이 트리거됩니다.",
+        "options": {
+          "no_action": "작업 없음",
+          "reset_traffic": "사용자 트래픽 초기화"
+        }
+      },
+      "change_order_event": {
+        "title": "구독 변경 시 트리거 이벤트",
+        "description": "구독 변경이 완료되면 이 작업이 트리거됩니다.",
+        "options": {
+          "no_action": "작업 없음",
+          "reset_traffic": "사용자 트래픽 초기화"
+        }
+      },
+      "subscribe_path": {
+        "title": "구독 경로",
+        "description": "구독 경로, 수정하면 기존 구독 경로가 변경됩니다",
+        "current_format": "현재 구독 경로 형식: {path}/xxxxxxxxxx"
+      },
+      "show_info_to_server": {
+        "title": "노드에 구독 정보 표시",
+        "description": "활성화하면 사용자가 노드를 구독할 때 구독 정보가 출력됩니다."
+      },
+      "show_protocol_to_server": {
+        "title": "노드 이름에 프로토콜 표시",
+        "description": "활성화하면 구독 라인에 프로토콜 이름이 포함됩니다 (예: [Hy2]홍콩)"
+      },
+      "saving": "저장 중...",
+      "plan": {
+        "title": "구독 플랜",
+        "add": "플랜 추가",
+        "search": "플랜 검색...",
+        "sort": {
+          "edit": "정렬 편집",
+          "save": "정렬 저장"
+        },
+        "columns": {
+          "id": "ID",
+          "show": "표시",
+          "sell": "판매",
+          "renew": "갱신",
+          "renew_tooltip": "구독 판매가 중단된 경우 기존 사용자의 갱신 가능 여부",
+          "name": "이름",
+          "stats": "통계",
+          "group": "권한 그룹",
+          "price": "가격",
+          "actions": "작업",
+          "edit": "편집",
+          "delete": "삭제",
+          "delete_confirm": {
+            "title": "삭제 확인",
+            "description": "이 작업은 이 구독을 영구적으로 삭제하며 되돌릴 수 없습니다. 계속하시겠습니까?",
+            "success": "성공적으로 삭제됨"
+          },
+          "price_period": {
+            "monthly": "월간",
+            "quarterly": "분기",
+            "half_yearly": "반년",
+            "yearly": "연간",
+            "two_yearly": "2년",
+            "three_yearly": "3년",
+            "onetime": "일회성",
+            "reset_traffic": "트래픽 초기화",
+            "unit": {
+              "month": "/월",
+              "quarter": "/분기",
+              "half_year": "/반년",
+              "year": "/년",
+              "two_year": "/2년",
+              "three_year": "/3년",
+              "times": "/회"
+            }
+          }
+        },
+        "form": {
+          "add_title": "플랜 추가",
+          "edit_title": "플랜 편집",
+          "name": {
+            "label": "플랜 이름",
+            "placeholder": "플랜 이름 입력"
+          },
+          "group": {
+            "label": "권한 그룹",
+            "placeholder": "권한 그룹 선택",
+            "add": "그룹 추가"
+          },
+          "transfer": {
+            "label": "트래픽",
+            "placeholder": "트래픽 크기 입력",
+            "unit": "GB"
+          },
+          "speed": {
+            "label": "속도 제한",
+            "placeholder": "속도 제한 입력",
+            "unit": "Mbps"
+          },
+          "price": {
+            "title": "가격 설정",
+            "base_price": "기본 월간 가격",
+            "clear": {
+              "button": "가격 초기화",
+              "tooltip": "모든 기간 가격 설정 초기화"
+            }
+          },
+          "device": {
+            "label": "기기 제한",
+            "placeholder": "제한 없음은 비워두세요",
+            "unit": "기기"
+          },
+          "capacity": {
+            "label": "용량 제한",
+            "placeholder": "제한 없음은 비워두세요",
+            "unit": "사용자"
+          },
+          "reset_method": {
+            "label": "트래픽 초기화 방식",
+            "placeholder": "트래픽 초기화 방식 선택",
+            "description": "구독 트래픽 초기화 방식을 설정하며, 다른 방식은 사용자 트래픽 계산 방식에 영향을 미칩니다",
+            "options": {
+              "follow_system": "시스템 설정 따름",
+              "monthly_first": "매월 1일",
+              "monthly_reset": "월간 초기화",
+              "no_reset": "초기화 없음",
+              "yearly_first": "1월 1일",
+              "yearly_reset": "연간 초기화"
+            }
+          },
+          "content": {
+            "label": "플랜 설명",
+            "placeholder": "여기에 플랜 설명을 작성하세요...",
+            "description": "마크다운 형식을 지원하며, 제목, 목록, 굵게, 기울임꼴 등의 스타일을 사용하여 내용을 꾸밀 수 있습니다",
+            "preview": "미리보기",
+            "preview_button": {
+              "show": "미리보기 표시",
+              "hide": "미리보기 숨기기"
+            },
+            "template": {
+              "button": "템플릿 사용",
+              "tooltip": "클릭하여 미리 설정된 플랜 설명 템플릿 사용",
+              "content": "## 플랜 특징\n• 고속 및 안정적인 글로벌 네트워크 액세스\n• 여러 기기 동시 온라인 지원\n• 무제한 트래픽 초기화\n\n## 사용 안내\n1. 지원 기기: iOS, Android, Windows, macOS\n2. 24/7 기술 지원\n3. 자동 주기적 트래픽 초기화\n\n## 주의사항\n- 남용 금지\n- 현지 법률 및 규정 준수\n- 언제든지 플랜 변경 지원"
+            }
+          },
+          "force_update": {
+            "label": "사용자에게 강제 업데이트"
+          },
+          "submit": {
+            "submitting": "제출 중...",
+            "submit": "제출",
+            "cancel": "취소",
+            "success": {
+              "add": "플랜이 성공적으로 추가되었습니다",
+              "update": "플랜이 성공적으로 업데이트되었습니다"
+            }
+          }
+        },
+        "page": {
+          "description": "여기에서 구독 플랜을 구성할 수 있으며, 추가, 삭제 및 편집 작업을 수행할 수 있습니다."
+        }
       }
+    },
+    "email": {
+      "title": "이메일 설정",
+      "description": "인증 코드, 비밀번호 재설정 및 알림 전송을 위한 시스템 이메일 서비스를 구성하며, 다양한 SMTP 제공업체를 지원합니다.",
+      "email_host": {
+        "title": "SMTP 호스트",
+        "description": "SMTP 서버 주소, 예: smtp.gmail.com"
+      },
+      "email_port": {
+        "title": "SMTP 포트",
+        "description": "SMTP 서버 포트, 일반적인 포트: 25, 465, 587"
+      },
+      "email_username": {
+        "title": "SMTP 사용자 이름",
+        "description": "SMTP 인증 사용자 이름"
+      },
+      "email_password": {
+        "title": "SMTP 비밀번호",
+        "description": "SMTP 인증 비밀번호 또는 애플리케이션별 비밀번호"
+      },
+      "email_encryption": {
+        "title": "암호화 방식",
+        "description": "이메일 암호화 방식",
+        "none": "없음",
+        "ssl": "SSL/TLS",
+        "tls": "STARTTLS"
+      },
+      "email_from": {
+        "title": "발신자 주소",
+        "description": "발신자 이메일 주소"
+      },
+      "email_from_name": {
+        "title": "발신자 이름",
+        "description": "발신자 표시 이름"
+      },
+      "email_template": {
+        "title": "이메일 템플릿",
+        "description": "이메일 템플릿 사용자 정의 방법은 문서를 참조하세요",
+        "placeholder": "이메일 템플릿 선택"
+      },
+      "remind_mail": {
+        "title": "이메일 알림",
+        "description": "활성화하면 사용자는 구독이 만료되거나 트래픽이 부족할 때 이메일 알림을 받습니다."
+      },
+      "test": {
+        "title": "테스트 이메일 전송",
+        "sending": "전송 중...",
+        "description": "구성을 확인하기 위해 테스트 이메일 전송",
+        "success": "테스트 이메일이 성공적으로 전송되었습니다",
+        "error": "테스트 이메일 전송 실패"
+      }
+    },
+    "telegram": {
+      "title": "텔레그램 설정",
+      "description": "사용자 알림, 계정 연동 및 명령어 상호작용을 위한 텔레그램 봇 기능을 구성합니다.",
+      "bot_token": {
+        "title": "봇 토큰",
+        "description": "Botfather가 제공한 토큰을 입력하세요.",
+        "placeholder": "0000000000:xxxxxxxxx_xxxxxxxxxxxxxxx"
+      },
+      "webhook": {
+        "title": "웹훅 설정",
+        "description": "봇의 웹훅을 설정합니다. 설정하지 않으면 텔레그램 알림을 받을 수 없습니다.",
+        "button": "원클릭 설정",
+        "setting": "웹훅 설정 중...",
+        "success": "웹훅이 성공적으로 설정되었습니다"
+      },
+      "bot_enable": {
+        "title": "봇 알림 활성화",
+        "description": "활성화하면 봇이 관리자와 텔레그램 계정을 연동한 사용자에게 기본 알림을 전송합니다."
+      },
+      "discuss_link": {
+        "title": "그룹 링크",
+        "description": "입력하면 사용자 측에 표시되거나 필요한 곳에서 사용됩니다.",
+        "placeholder": "https://t.me/xxxxxx"
+      }
+    },
+    "app": {
+      "title": "앱 설정",
+      "description": "API 인터페이스, 버전 관리 및 푸시 알림을 포함한 모바일 애플리케이션 구성을 관리합니다.",
+      "common": {
+        "placeholder": "입력해주세요"
+      },
+      "windows": {
+        "version": {
+          "title": "Windows 버전",
+          "description": "Windows 클라이언트의 현재 버전 번호"
+        },
+        "download": {
+          "title": "Windows 다운로드 URL",
+          "description": "Windows 클라이언트 다운로드 링크"
+        }
+      },
+      "macos": {
+        "version": {
+          "title": "macOS 버전",
+          "description": "macOS 클라이언트의 현재 버전 번호"
+        },
+        "download": {
+          "title": "macOS 다운로드 URL",
+          "description": "macOS 클라이언트 다운로드 링크"
+        }
+      },
+      "android": {
+        "version": {
+          "title": "Android 버전",
+          "description": "Android 클라이언트의 현재 버전 번호"
+        },
+        "download": {
+          "title": "Android 다운로드 URL",
+          "description": "Android 클라이언트 다운로드 링크"
+        }
+      }
+    },
+    "common": {
+      "saving": "저장 중...",
+      "save_success": "자동으로 저장됨",
+      "placeholder": "입력해주세요",
+      "autoSaved": "자동으로 저장됨"
     }
   },
   "group": {

@@ -645,7 +645,8 @@ window.XBOARD_TRANSLATIONS['en-US'] = {
         "title": "Set Webhook",
         "description": "Set up webhook for the bot. Without setting it, you won't receive Telegram notifications.",
         "button": "One-Click Setup",
-        "setting": "Setting Webhook..."
+        "setting": "Setting Webhook...",
+        "success": "Webhook set successfully"
       },
       "bot_enable": {
         "title": "Enable Bot Notifications",
