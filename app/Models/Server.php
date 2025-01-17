@@ -142,17 +142,17 @@ class Server extends Model
     private function castValueWithConfig($value, array $config)
     {
         if ($value === null) {
-            return $config['default'];
+            return $config['default'] ?? null;
         }
 
-        return match($config['type']) {
+        return match ($config['type']) {
             'integer' => (int) $value,
             'boolean' => (bool) $value,
             'string' => (string) $value,
             'array' => (array) $value,
-            'object' => is_array($value) ? 
-                $this->castSettingsWithConfig($value, $config['fields']) : 
-                $config['default'],
+            'object' => is_array($value) ?
+            $this->castSettingsWithConfig($value, $config['fields']) :
+            $config['default'] ?? null,
             default => $value
         };
     }
@@ -195,7 +195,7 @@ class Server extends Model
 
         $configs = self::PROTOCOL_CONFIGURATIONS[$this->type] ?? [];
         $castedSettings = $this->castSettingsWithConfig($value ?? [], $configs);
-        
+
         $this->attributes['protocol_settings'] = json_encode($castedSettings);
     }
 
