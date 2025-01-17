@@ -125,8 +125,11 @@ docker compose run -it --rm web php artisan xboard:install
 
 ⚠️ Important Configuration Notes:
 1. Database Configuration
-   - Database Host: Enter `mysql` (not localhost or 127.0.0.1)
-   - Database Port: `3306`
+   - Database Host: Choose based on your deployment:
+     1. If database and Xboard are in the same network, use `mysql`
+     2. If connection fails, go to: Database -> Select Database -> Connection Info -> Container Connection, and use the "Host" value
+     3. If using external database, enter your actual database host
+   - Database Port: `3306` (default port unless configured otherwise)
    - Database Name: `xboard` (the database created earlier)
    - Database User: `xboard` (the user created earlier)
    - Database Password: Enter the password saved earlier
