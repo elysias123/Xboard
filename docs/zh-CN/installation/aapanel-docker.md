@@ -109,7 +109,7 @@ location / {
 > - 如果您是最近安装的新版本，使用下面的命令：
 ```bash
 docker compose pull && \
-docker compose run -it --rm web php artisan xboard:update && \
+docker compose run -it --rm web sh update.sh && \
 docker compose up -d
 ```
 > - 如果您是较早安装的旧版本，需要将命令中的 `web` 改为 `xboard`，即：
@@ -117,7 +117,7 @@ docker compose up -d
 git config --global --add safe.directory $(pwd)
 git fetch --all && git reset --hard origin/master && git pull origin master
 docker compose pull && \
-docker compose run -it --rm xboard php artisan xboard:update && \
+docker compose run -it --rm xboard sh update.sh && \
 docker compose up -d
 ```
 > 🤔 不确定用哪个？可以先尝试使用新版命令，如果报错再使用旧版命令。
