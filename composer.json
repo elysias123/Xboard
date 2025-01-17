@@ -45,19 +45,11 @@
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
-        "sort-packages": true,
-        "allow-plugins": {
-            "cweagans/composer-patches": true
-        }
+        "sort-packages": true
     },
     "extra": {
         "laravel": {
             "dont-discover": []
-        },
-        "patches": {
-            "joanhey/adapterman": {
-                "http": "patches/Http.patch"
-            }
         }
     },
     "autoload": {
