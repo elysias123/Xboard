@@ -56,10 +56,6 @@ docker compose up -d
 - [Migrate from v2board 1.7.3](./docs/zh-CN/migration/v2board-1.7.3.md)
 - [Migrate from v2board wyx2685](./docs/zh-CN/migration/v2board-wyx2685.md)
 
-## 📈 Star History
-
-[![Stargazers over time](https://starchart.cc/cedar2025/Xboard.svg)](https://starchart.cc/cedar2025/Xboard)
-
 ## 🛠️ Tech Stack
 
 - Backend: Laravel 11 + Octane
@@ -89,3 +85,7 @@ docker compose restart
 ## 🤝 Contributing
 
 Issues and Pull Requests are welcome to help improve the project.
+
+## 📈 Star History
+
+[![Stargazers over time](https://starchart.cc/cedar2025/Xboard.svg)](https://starchart.cc/cedar2025/Xboard)

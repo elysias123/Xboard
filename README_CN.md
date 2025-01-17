@@ -56,9 +56,9 @@ docker compose up -d
 - [从 v2board 1.7.3 迁移](./docs/zh-CN/migration/v2board-1.7.3.md)
 - [从 v2board wyx2685 迁移](./docs/zh-CN/migration/v2board-wyx2685.md)
 
-## 📈 Star 增长趋势
+## 🤝 参与贡献
 
-[![Stargazers over time](https://starchart.cc/cedar2025/Xboard.svg)](https://starchart.cc/cedar2025/Xboard)
+欢迎提交 Issue 和 Pull Request 来帮助改进项目。
 
 ## 🛠️ 技术栈
 
@@ -89,4 +89,8 @@ docker compose restart
 
 ## 🤝 参与贡献
 
-欢迎提交 Issue 和 Pull Request 来帮助改进项目。 
+欢迎提交 Issue 和 Pull Request 来帮助改进项目。
+
+## 📈 Star 增长趋势
+
+[![Stargazers over time](https://starchart.cc/cedar2025/Xboard.svg)](https://starchart.cc/cedar2025/Xboard) 
