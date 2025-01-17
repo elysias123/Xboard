@@ -184,15 +184,21 @@ class SingBox implements ProtocolInterface
                     'fingerprint' => Helper::getRandFingerprint()
                 ]
             ];
-            if ($serverName = data_get($protocol_settings, 'tls_settings.server_name')) {
-                $tlsConfig['server_name'] = $serverName;
-            }
-            if ($protocol_settings['tls'] == 2) {
-                $tlsConfig['reality'] = [
-                    'enabled' => true,
-                    'public_key' => data_get($protocol_settings, 'reality_settings.public_key'),
-                    'short_id' => data_get($protocol_settings, 'reality_settings.short_id')
-                ];
+
+            switch ($protocol_settings['tls']) {
+                case 1:
+                    if ($serverName = data_get($protocol_settings, 'tls_settings.server_name')) {
+                        $tlsConfig['server_name'] = $serverName;
+                    }
+                    break;
+                case 2:
+                    $tlsConfig['server_name'] = data_get($protocol_settings, 'reality_settings.server_name');
+                    $tlsConfig['reality'] = [
+                        'enabled' => true,
+                        'public_key' => data_get($protocol_settings, 'reality_settings.public_key'),
+                        'short_id' => data_get($protocol_settings, 'reality_settings.short_id')
+                    ];
+                    break;
             }
 
             $array['tls'] = $tlsConfig;
