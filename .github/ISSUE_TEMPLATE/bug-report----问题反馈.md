@@ -33,7 +33,7 @@ PHP版本 | Version:
 <!-- 拖拽图片到这里（请注意隐藏敏感信息）-->
 
 **日志信息 | Logs**
-<!-- 运行命令：php artisan log:export 7 -->
+<!-- storage/logs 目录下的日志 -->
 ```log
 // 粘贴日志内容到这里
 ```
