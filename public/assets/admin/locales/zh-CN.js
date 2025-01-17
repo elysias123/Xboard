@@ -617,7 +617,8 @@ window.XBOARD_TRANSLATIONS['zh-CN'] = {
     "common": {
       "saving": "保存中...",
       "save_success": "已自动保存",
-      "placeholder": "请输入"
+      "placeholder": "请输入",
+      "autoSaved": "已自动保存"
     },
     "invite": {
       "title": "邀请&佣金设置",
