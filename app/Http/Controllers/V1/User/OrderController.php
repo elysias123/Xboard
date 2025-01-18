@@ -14,6 +14,7 @@ use App\Services\CouponService;
 use App\Services\OrderService;
 use App\Services\PaymentService;
 use App\Services\PlanService;
+use App\Services\Plugin\HookManager;
 use App\Services\UserService;
 use App\Utils\Helper;
 use Illuminate\Http\Request;
@@ -112,6 +113,7 @@ class OrderController extends Controller
             if (!$order->save()) {
                 throw new ApiException(__('Failed to create order'));
             }
+            HookManager::call('order.after_create', $order);
 
             return $this->success($order->trade_no);
         });

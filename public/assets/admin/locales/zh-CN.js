@@ -150,6 +150,7 @@ window.XBOARD_TRANSLATIONS['zh-CN'] = {
     "systemManagement": "系统管理",
     "systemConfig": "系统配置",
     "themeConfig": "主题配置",
+    "pluginManagement": "插件管理",
     "noticeManagement": "公告管理",
     "paymentConfig": "支付配置",
     "knowledgeManagement": "知识库管理",
@@ -162,6 +163,58 @@ window.XBOARD_TRANSLATIONS['zh-CN'] = {
     "couponManagement": "优惠券管理",
     "userManagement": "用户管理",
     "ticketManagement": "工单管理"
+  },
+  "plugin": {
+    "title": "插件管理",
+    "description": "管理和配置系统插件",
+    "search": {
+      "placeholder": "搜索插件名称或描述..."
+    },
+    "category": {
+      "placeholder": "选择分类",
+      "all": "全部",
+      "other": "其他"
+    },
+    "tabs": {
+      "all": "全部插件",
+      "installed": "已安装",
+      "available": "可用插件"
+    },
+    "status": {
+      "enabled": "已启用",
+      "disabled": "已禁用"
+    },
+    "button": {
+      "install": "安装",
+      "config": "配置",
+      "enable": "启用",
+      "disable": "禁用"
+    },
+    "uninstall": {
+      "title": "卸载插件",
+      "description": "确定要卸载该插件吗？卸载后插件数据将被清除。",
+      "button": "卸载"
+    },
+    "config": {
+      "title": "配置",
+      "description": "修改插件配置",
+      "save": "保存",
+      "cancel": "取消"
+    },
+    "author": "作者",
+    "messages": {
+      "installSuccess": "插件安装成功",
+      "installError": "插件安装失败",
+      "uninstallSuccess": "插件卸载成功",
+      "uninstallError": "插件卸载失败",
+      "enableSuccess": "插件启用成功",
+      "enableError": "插件启用失败",
+      "disableSuccess": "插件禁用成功",
+      "disableError": "插件禁用失败",
+      "configLoadError": "加载插件配置失败",
+      "configSaveSuccess": "配置保存成功",
+      "configSaveError": "配置保存失败"
+    }
   },
   "settings": {
     "title": "系统设置",
@@ -1941,6 +1994,7 @@ window.XBOARD_TRANSLATIONS['zh-CN'] = {
     "dashboard": "仪表盘",
     "systemManagement": "系统管理",
     "systemConfig": "系统配置",
+    "pluginManagement": "插件管理",
     "themeConfig": "主题配置",
     "noticeManagement": "公告管理",
     "paymentConfig": "支付配置",

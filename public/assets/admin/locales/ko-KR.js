@@ -151,6 +151,7 @@ window.XBOARD_TRANSLATIONS['ko-KR'] = {
     "systemConfig": "시스템 설정",
     "themeConfig": "테마 설정",
     "noticeManagement": "공지사항 관리",
+    "pluginManagement": "플러그인 관리",
     "paymentConfig": "결제 설정",
     "knowledgeManagement": "지식 관리",
     "nodeManagement": "노드 관리",
@@ -162,6 +163,58 @@ window.XBOARD_TRANSLATIONS['ko-KR'] = {
     "couponManagement": "쿠폰 관리",
     "userManagement": "사용자 관리",
     "ticketManagement": "티켓 관리"
+  },
+  "plugin": {
+    "title": "플러그인 관리",
+    "description": "시스템 플러그인 관리 및 설정",
+    "search": {
+      "placeholder": "플러그인 이름 또는 설명 검색..."
+    },
+    "category": {
+      "placeholder": "카테고리 선택",
+      "all": "전체",
+      "other": "기타"
+    },
+    "tabs": {
+      "all": "전체 플러그인",
+      "installed": "설치됨",
+      "available": "사용 가능"
+    },
+    "status": {
+      "enabled": "활성화됨",
+      "disabled": "비활성화됨"
+    },
+    "button": {
+      "install": "설치",
+      "config": "설정",
+      "enable": "활성화",
+      "disable": "비활성화"
+    },
+    "uninstall": {
+      "title": "플러그인 제거",
+      "description": "이 플러그인을 제거하시겠습니까? 제거 후 플러그인 데이터가 삭제됩니다.",
+      "button": "제거"
+    },
+    "config": {
+      "title": "설정",
+      "description": "플러그인 설정 수정",
+      "save": "저장",
+      "cancel": "취소"
+    },
+    "author": "작성자",
+    "messages": {
+      "installSuccess": "플러그인이 성공적으로 설치되었습니다",
+      "installError": "플러그인 설치에 실패했습니다",
+      "uninstallSuccess": "플러그인이 성공적으로 제거되었습니다",
+      "uninstallError": "플러그인 제거에 실패했습니다",
+      "enableSuccess": "플러그인이 성공적으로 활성화되었습니다",
+      "enableError": "플러그인 활성화에 실패했습니다",
+      "disableSuccess": "플러그인이 성공적으로 비활성화되었습니다",
+      "disableError": "플러그인 비활성화에 실패했습니다",
+      "configLoadError": "플러그인 설정을 불러오는데 실패했습니다",
+      "configSaveSuccess": "설정이 성공적으로 저장되었습니다",
+      "configSaveError": "설정 저장에 실패했습니다"
+    }
   },
   "settings": {
     "title": "시스템 설정",

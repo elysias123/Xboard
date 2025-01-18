@@ -151,6 +151,7 @@ window.XBOARD_TRANSLATIONS['en-US'] = {
     "systemConfig": "System Configuration",
     "themeConfig": "Theme Configuration",
     "noticeManagement": "Notice Management",
+    "pluginManagement": "Plugin Management",
     "paymentConfig": "Payment Configuration",
     "knowledgeManagement": "Knowledge Management",
     "nodeManagement": "Node Management",
@@ -162,6 +163,58 @@ window.XBOARD_TRANSLATIONS['en-US'] = {
     "couponManagement": "Coupon Management",
     "userManagement": "User Management",
     "ticketManagement": "Ticket Management"
+  },
+  "plugin": {
+    "title": "Plugin Management",
+    "description": "Manage and configure system plugins",
+    "search": {
+      "placeholder": "Search plugin name or description..."
+    },
+    "category": {
+      "placeholder": "Select Category",
+      "all": "All",
+      "other": "Other"
+    },
+    "tabs": {
+      "all": "All Plugins",
+      "installed": "Installed",
+      "available": "Available"
+    },
+    "status": {
+      "enabled": "Enabled",
+      "disabled": "Disabled"
+    },
+    "button": {
+      "install": "Install",
+      "config": "Configure",
+      "enable": "Enable",
+      "disable": "Disable"
+    },
+    "uninstall": {
+      "title": "Uninstall Plugin",
+      "description": "Are you sure you want to uninstall this plugin? Plugin data will be cleared after uninstallation.",
+      "button": "Uninstall"
+    },
+    "config": {
+      "title": "Configuration",
+      "description": "Modify plugin configuration",
+      "save": "Save",
+      "cancel": "Cancel"
+    },
+    "author": "Author",
+    "messages": {
+      "installSuccess": "Plugin installed successfully",
+      "installError": "Failed to install plugin",
+      "uninstallSuccess": "Plugin uninstalled successfully",
+      "uninstallError": "Failed to uninstall plugin",
+      "enableSuccess": "Plugin enabled successfully",
+      "enableError": "Failed to enable plugin",
+      "disableSuccess": "Plugin disabled successfully",
+      "disableError": "Failed to disable plugin",
+      "configLoadError": "Failed to load plugin configuration",
+      "configSaveSuccess": "Configuration saved successfully",
+      "configSaveError": "Failed to save configuration"
+    }
   },
   "settings": {
     "title": "System Settings",

@@ -17,6 +17,7 @@ use App\Http\Controllers\V2\Admin\PaymentController;
 use App\Http\Controllers\V2\Admin\SystemController;
 use App\Http\Controllers\V2\Admin\ThemeController;
 use Illuminate\Contracts\Routing\Registrar;
+use Illuminate\Support\Facades\Route;
 
 class AdminRoute
 {
@@ -202,6 +203,20 @@ class AdminRoute
                 $router->post('/saveThemeConfig', [ThemeController::class, 'saveThemeConfig']);
                 $router->post('/getThemeConfig', [ThemeController::class, 'getThemeConfig']);
             });
+
+            // Plugin
+            $router->group([
+                'prefix' => 'plugin'
+            ], function ($router) {
+                $router->get('/getPlugins', [\App\Http\Controllers\V2\Admin\PluginController::class, 'index']);
+                $router->post('install', [\App\Http\Controllers\V2\Admin\PluginController::class, 'install']);
+                $router->post('uninstall', [\App\Http\Controllers\V2\Admin\PluginController::class, 'uninstall']);
+                $router->post('enable', [\App\Http\Controllers\V2\Admin\PluginController::class, 'enable']);
+                $router->post('disable', [\App\Http\Controllers\V2\Admin\PluginController::class, 'disable']);
+                $router->get('config', [\App\Http\Controllers\V2\Admin\PluginController::class, 'getConfig']);
+                $router->post('config', [\App\Http\Controllers\V2\Admin\PluginController::class, 'updateConfig']);
+            });
         });
+
     }
 }
