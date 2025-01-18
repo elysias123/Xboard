@@ -176,6 +176,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\SettingServiceProvider::class,
         App\Providers\OctaneSchedulerProvider::class,
+        App\Providers\PluginServiceProvider::class,
 
     ],
 
