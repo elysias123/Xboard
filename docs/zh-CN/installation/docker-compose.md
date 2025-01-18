@@ -29,7 +29,7 @@ docker compose run -it --rm \
     -e ENABLE_SQLITE=true \
     -e ENABLE_REDIS=true \
     -e ADMIN_ACCOUNT=admin@demo.com \
-    web php artisan xboard:install && \
+    web php artisan xboard:install
 ```
 - 自定义配置安装（高级用户）
 ```bash
