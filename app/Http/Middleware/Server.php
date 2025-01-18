@@ -41,7 +41,6 @@ class Server
             ],
             'node_id' => 'required',
             'node_type' => [
-                'required',
                 'nullable',
                 function ($attribute, $value, $fail) use ($request) {
                     if (!ServerModel::isValidType($value)) {

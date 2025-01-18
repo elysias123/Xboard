@@ -24,6 +24,21 @@ class ServerRoute
                 $route->post('alive', [UniProxyController::class, 'alive']);
                 $route->get('alivelist', [UniProxyController::class, 'alivelist']);
             });
+            $router->group([
+                'prefix' => 'ShadowsocksTidalab',
+                'middleware' => 'server:shadowsocks'
+            ], function ($route) {
+                $route->get('user', [ShadowsocksTidalabController::class, 'user']);
+                $route->post('submit', [ShadowsocksTidalabController::class, 'submit']);
+            });
+            $router->group([
+                'prefix' => 'TrojanTidalab',
+                'middleware' => 'server:trojan'
+            ], function ($route) {
+                $route->get('config', [TrojanTidalabController::class, 'config']);
+                $route->get('user', [TrojanTidalabController::class, 'user']);
+                $route->post('submit', [TrojanTidalabController::class, 'submit']);
+            });
         });
     }
 }
