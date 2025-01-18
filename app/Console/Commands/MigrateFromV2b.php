@@ -54,9 +54,10 @@ class MigrateFromV2b extends Command
             '1.7.3' => [
                 'ALTER TABLE `v2_stat_order` RENAME TO `v2_stat`;',
                 "ALTER TABLE `v2_stat` CHANGE COLUMN order_amount paid_total INT COMMENT '订单合计';",
+                "ALTER TABLE `v2_stat` CHANGE COLUMN order_count paid_count INT COMMENT '邀请佣金';",
                 "ALTER TABLE `v2_stat` CHANGE COLUMN commission_amount commission_total INT COMMENT '佣金合计';",
                 "ALTER TABLE `v2_stat`
-                    ADD COLUMN paid_count INT NULL,
+                    ADD COLUMN order_count INT NULL,
                     ADD COLUMN order_total INT NULL,
                     ADD COLUMN register_count INT NULL,
                     ADD COLUMN invite_count INT NULL,
