@@ -188,6 +188,7 @@ class TicketController extends Controller
         $remaining_traffic = $this->getFlowData($user->transfer_enable - $user->u - $user->d); // 剩余流量
         $u = $this->getFlowData($user->u); // 上传
         $d = $this->getFlowData($user->d); // 下载
+        $TGid = $user->telegram_id ?? "NULL";
         $expired_at = date("Y-m-d h:m:s", $user->expired_at); // 到期时间
         $money = $user->balance / 100;
         $affmoney = $user->commission_balance / 100;
@@ -196,6 +197,7 @@ class TicketController extends Controller
         $region = filter_var($ip,FILTER_VALIDATE_IP, FILTER_FLAG_IPV4) ? (new \Ip2Region())->simple($ip) : "NULL";
         $TGmessage = "📮工单提醒 #{$ticket->id}\n———————————————\n";
         $TGmessage .= "邮箱: `{$user->email}`\n";
+        $TGmessage .= "telegram id: `{$TGid}`\n";
         $TGmessage .= "用户位置: \n`{$region}`\n";
         if($user->plan){
             $TGmessage .= "套餐与流量: \n`{$plan->name} {$transfer_enable}/{$remaining_traffic}`\n";
