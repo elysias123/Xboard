@@ -141,7 +141,7 @@ class Server extends Model
 
     private function castValueWithConfig($value, array $config)
     {
-        if ($value === null) {
+        if ($value === null && $config['type'] !== 'object') {
             return $config['default'] ?? null;
         }
 
