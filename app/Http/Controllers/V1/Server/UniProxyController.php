@@ -116,9 +116,11 @@ class UniProxyController extends Controller
                 ...$baseConfig,
                 'tls' => (int) $protocolSettings['tls'],
                 'flow' => $protocolSettings['flow'],
-                'tls_settings' => [...(int) $protocolSettings['tls'] === 1
-                    ? $protocolSettings['tls_settings']
-                    : $protocolSettings['reality_settings']]
+                'tls_settings' => [
+                    ...((int) $protocolSettings['tls'] === 1
+                        ? ($protocolSettings['tls_settings'] ?? [])
+                        : ($protocolSettings['reality_settings'] ?? []))
+                ]
             ],
             'hysteria' => [
                 'server_port' => (int) $serverPort,
