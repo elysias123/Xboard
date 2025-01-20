@@ -117,7 +117,10 @@ class ClientController extends Controller
         }
 
         // 检测是否是浏览器访问
-        if ($this->isBrowserAccess($request)) {
+//        if ($this->isBrowserAccess($request)) {
+//            return $this->handleBrowserSubscribe($user, $userService);
+//        }
+        if ($this->isBrowserAccess($request) && env('IF_SUB') == "1")  {
             return $this->handleBrowserSubscribe($user, $userService);
         }
         $clientInfo = $this->getClientInfo($request);
