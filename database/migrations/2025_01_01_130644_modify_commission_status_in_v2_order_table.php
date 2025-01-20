@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('v2_order', function (Blueprint $table) {
-            $table->boolean('commission_status')->nullable()->default(null)->comment('0待确认1发放中2有效3无效')->change();
+            $table->integer('commission_status')->nullable()->default(null)->comment('0待确认1发放中2有效3无效')->change();
         });
     }
 
@@ -22,7 +22,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('v2_order', function (Blueprint $table) {
-            $table->boolean('commission_status')->default(false)->comment('0待确认1发放中2有效3无效')->change();
+            $table->integer('commission_status')->default(false)->comment('0待确认1发放中2有效3无效')->change();
         });
     }
 };
