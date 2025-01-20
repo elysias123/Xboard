@@ -146,12 +146,65 @@ class Loon implements ProtocolInterface
             'udp=true'
         ];
         if (!empty($protocol_settings['allow_insecure'])) {
-            array_push($config, data_get($protocol_settings, 'tls_settings')['allow_insecure'] ? 'skip-cert-verify=true' : 'skip-cert-verify=false');
+            array_push($config, data_get($protocol_settings, 'allow_insecure') ? 'skip-cert-verify=true' : 'skip-cert-verify=false');
         }
         $config = array_filter($config);
         $uri = implode(',', $config);
         $uri .= "\r\n";
         return $uri;
+    }
+
+    public static function buildVless($uuid, $server)
+    {
+        $protocol_settings = $server['protocol_settings'];
+        $config = [
+            "{$server['name']}=vless",
+            $server['host'],
+            $server['port'],
+            $uuid,
+            'fast-open=false',
+            'udp=true',
+            'alterId=0'
+        ];
+        switch ((int) data_get($protocol_settings, 'tls')) {
+            case 1:
+                $config[] = 'over-tls=true';
+                $tlsSettings = data_get($protocol_settings, 'tls_settings', []);
+                if ($tlsSettings) {
+                    $config[] = 'skip-cert-verify=' . (data_get($tlsSettings, 'allow_insecure') ? 'true' : 'false');
+                    if ($serverName = data_get($tlsSettings, 'server_name')) {
+                        $config[] = "tls-name={$serverName}";
+                    }
+                }
+                break;
+            case 2:
+                return '';
+        }
+        $network_settings = data_get($protocol_settings, 'network_settings', []);
+        switch ((string) data_get($network_settings, 'network')) {
+            case 'tcp':
+                $config[] = 'transport=tcp';
+                if ($headerType = data_get($network_settings, 'header.type')) {
+                    $config = collect($config)->map(function ($item) use ($headerType) {
+                        return $item === 'transport=tcp' ? "transport={$headerType}" : $item;
+                    })->toArray();
+                }
+                if ($paths = data_get($network_settings, 'header.request.path')) {
+                    $config[] = 'path=' . $paths[array_rand($paths)];
+                }
+                break;
+            case 'ws':
+                $config[] = 'transport=ws';
+                if ($path = data_get($network_settings, 'path')) {
+                    $config[] = "path={$path}";
+                }
+
+                if ($host = data_get($network_settings, 'headers.Host')) {
+                    $config[] = "host={$host}";
+                }
+                break;
+        }
+        return implode(',', $config) . "\r\n";
     }
 
     public static function buildHysteria($password, $server, $user)

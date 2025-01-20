@@ -147,8 +147,8 @@ class General implements ProtocolInterface
             case 'ws':
                 if ($path = data_get($protocol_settings, 'network_settings.path'))
                     $config['path'] = $path;
-                if ($host = data_get($protocol_settings, 'network_settings.headers.Host'))
-                    $config['host'] = $host;
+                if ($wsHost = data_get($protocol_settings, 'network_settings.headers.Host'))
+                    $config['host'] = $wsHost;
                 break;
             case 'grpc':
                 if ($path = data_get($protocol_settings, 'network_settings.serviceName'))
