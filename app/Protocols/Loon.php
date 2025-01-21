@@ -89,40 +89,39 @@ class Loon implements ProtocolInterface
 
         if (data_get($protocol_settings, 'tls')) {
             if (data_get($protocol_settings, 'network') === 'tcp')
-                array_push($config, 'over-tls=true');
+                $config[] = 'over-tls=true';
             if (data_get($protocol_settings, 'tls_settings')) {
                 $tls_settings = data_get($protocol_settings, 'tls_settings');
-                if (data_get($tls_settings, 'allow_insecure'))
-                    array_push($config, 'skip-cert-verify=' . ($tls_settings['allow_insecure'] ? 'true' : 'false'));
+                $config[] = 'skip-cert-verify=' . ($tls_settings['allow_insecure'] ? 'true' : 'false');
                 if (data_get($tls_settings, 'server_name'))
-                    array_push($config, "tls-name={$tls_settings['server_name']}");
+                    $config[] = "tls-name={$tls_settings['server_name']}";
             }
         }
 
         switch (data_get($server['protocol_settings'], 'network')) {
             case 'tcp':
-                array_push($config, 'transport=tcp');
+                $config[] = 'transport=tcp';
                 $tcpSettings = data_get($protocol_settings, 'network_settings');
-                if (data_get($protocol_settings, 'network_settings')['header']['type'])
+                if (data_get($tcpSettings, 'header.type'))
                     $config = str_replace('transport=tcp', "transport={$tcpSettings['header']['type']}", $config);
                 if (data_get($tcpSettings, key: 'header.request.path')) {
                     $paths = data_get($tcpSettings, key: 'header.request.path');
                     $path = $paths[array_rand($paths)];
-                    array_push($config, "path={$path}");
+                    $config[] = "path={$path}";
                 }
                 if (data_get($tcpSettings, key: 'header.request.headers.Host')) {
                     $hosts = data_get($tcpSettings, key: 'header.request.headers.Host');
                     $host = $hosts[array_rand($hosts)];
-                    array_push($config, "host={$host}");
+                    $config[] = "host={$host}";
                 }
                 break;
             case 'ws':
-                array_push($config, 'transport=ws');
+                $config[] = 'transport=ws';
                 $wsSettings = data_get($protocol_settings, 'network_settings');
                 if (data_get($wsSettings, key: 'path'))
-                    array_push($config, "path={$wsSettings['path']}");
+                    $config[] = "path={$wsSettings['path']}";
                 if (data_get($wsSettings, key: 'headers.Host'))
-                    array_push($config, "host={$wsSettings['headers']['Host']}");
+                    $config[] = "host={$wsSettings['headers']['Host']}";
                 break;
 
 
@@ -146,7 +145,7 @@ class Loon implements ProtocolInterface
             'udp=true'
         ];
         if (!empty($protocol_settings['allow_insecure'])) {
-            array_push($config, data_get($protocol_settings, 'allow_insecure') ? 'skip-cert-verify=true' : 'skip-cert-verify=false');
+            $config[] = data_get($protocol_settings, 'allow_insecure') ? 'skip-cert-verify=true' : 'skip-cert-verify=false';
         }
         $config = array_filter($config);
         $uri = implode(',', $config);

@@ -72,7 +72,7 @@ return new class extends Migration {
                 $table->integer('three_year_price')->nullable();
                 $table->integer('onetime_price')->nullable();
                 $table->integer('reset_price')->nullable();
-                $table->boolean('reset_traffic_method')->nullable()->comment('重置流量方式:0跟随系统设置、1每月1号、2按月重置、3不重置、4每年1月1日、5按年重置');
+                $table->integer('reset_traffic_method')->nullable()->comment('重置流量方式:0跟随系统设置、1每月1号、2按月重置、3不重置、4每年1月1日、5按年重置');
                 $table->integer('capacity_limit')->nullable();
                 $table->integer('created_at');
                 $table->integer('updated_at');
@@ -264,8 +264,8 @@ return new class extends Migration {
                 $table->integer('refund_amount')->nullable()->comment('退款金额');
                 $table->integer('balance_amount')->nullable()->comment('使用余额');
                 $table->text('surplus_order_ids')->nullable()->comment('折抵订单');
-                $table->boolean('status')->default(false)->comment('0待支付1开通中2已取消3已完成4已折抵');
-                $table->boolean('commission_status')->default(false)->comment('0待确认1发放中2有效3无效');
+                $table->integer('status')->default(0)->comment('0待支付1开通中2已取消3已完成4已折抵');
+                $table->integer('commission_status')->default(false)->comment('0待确认1发放中2有效3无效');
                 $table->integer('commission_balance')->default(0);
                 $table->integer('actual_commission_balance')->nullable()->comment('实际支付佣金');
                 $table->integer('paid_at')->nullable();
@@ -299,7 +299,7 @@ return new class extends Migration {
                 $table->integer('id', true);
                 $table->string('code');
                 $table->string('name');
-                $table->boolean('type');
+                $table->integer('type');
                 $table->integer('value');
                 $table->boolean('show')->default(false);
                 $table->integer('limit_use')->nullable();
@@ -333,9 +333,9 @@ return new class extends Migration {
                 $table->integer('id', true);
                 $table->integer('user_id');
                 $table->string('subject');
-                $table->boolean('level');
-                $table->boolean('status')->default(false)->comment('0:已开启 1:已关闭');
-                $table->boolean('reply_status')->default(true)->comment('0:待回复 1:已回复');
+                $table->integer('level');
+                $table->integer('status')->default(0)->comment('0:已开启 1:已关闭');
+                $table->integer('reply_status')->default(1)->comment('0:待回复 1:已回复');
                 $table->integer('created_at');
                 $table->integer('updated_at');
             });
@@ -421,7 +421,7 @@ return new class extends Migration {
                 $table->string('host');
                 $table->integer('port');
                 $table->integer('server_port');
-                $table->boolean('tls');
+                $table->integer('tls');
                 $table->text('tls_settings')->nullable();
                 $table->string('flow', 64)->nullable();
                 $table->string('network', 11);
